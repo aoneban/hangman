@@ -1,5 +1,6 @@
 import './index.scss';
-import { calculate } from './modules/calc';
+import { generateGuillotine } from './modules/guillotine';
 
 console.log('hello');
-console.log(calculate(7, 9));
+
+generateGuillotine();

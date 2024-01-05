@@ -1,0 +1,43 @@
+#root {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    overflow: auto;
+    .wrapper-left {
+        width: 30rem;
+        height: auto;
+        border-bottom: 10px solid $color;
+        .block-left {
+            position: relative;
+            margin: 0 auto;
+            width: 300px;
+            height: 30rem;
+            border-left: 10px solid $color;
+            border-top: 10px solid $color;
+            &__rope {
+                width: 1px;
+                height: 70px;
+                border: 5px solid $color;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+            &__jumper {
+                width: 1px;
+                height: 70px;
+                border: 5px solid $color;
+                position: absolute;
+                transform: rotate(45deg);
+                left: 15px;
+                top: -14px;
+            }
+        }
+    }
+}
