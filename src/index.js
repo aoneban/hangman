@@ -1,6 +1,6 @@
 import './index.scss';
 import { generateGuillotine } from './modules/guillotine';
-
-console.log('hello');
+import { generateKeyboard } from './modules/keyboard';
 
 generateGuillotine();
+generateKeyboard(0);
