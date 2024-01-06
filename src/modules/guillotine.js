@@ -18,20 +18,12 @@ export const generateGuillotine = () => {
   const jumper = document.createElement('div');
   jumper.classList.add('block-left__jumper');
 
-  const word = document.createElement('div');
-  word.classList.add('block-right__word');
-  word.textContent = 'Поле Чудес';
-
-  const blockRight = document.createElement('div');
-  blockRight.classList.add('block-right__question');
-  blockRight.textContent = 'Назовите слово';
-
   const keyboard = document.createElement('div');
   keyboard.classList.add('block-right__keyboard');
 
   blockLeft.append(rope, jumper);
   wrapperLeft.append(blockLeft);
-  wrapperRight.append(word, blockRight, keyboard);
+  wrapperRight.append(keyboard);
   container.append(wrapperLeft, wrapperRight);
   wrapper.append(container);
 };
