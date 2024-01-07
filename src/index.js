@@ -12,12 +12,12 @@ const filterToQuestion = (num) => {
 
 const filterToAnswer = (num) => {
   const item = questions.filter((el) => el.id === num);
-  return item[0].answer.split('');
+  return item[0].answer.toUpperCase().split('');
 };
 
 const generateAnswer = (num) => {
-  const wrapper = document.querySelector('.wrapper-right');
-  const answer = document.createElement('div');
+  const wrapper = document.querySelector('.wrapper-right')
+  const answer = document.createElement('div')
   answer.classList.add('block-answer');
   const newAnswer = filterToAnswer(num);
   newAnswer.forEach((el, ind) => {
@@ -40,5 +40,6 @@ const generateQuestion = (num) => {
   wrapper.prepend(question);
   generateAnswer(num);
 };
-generateQuestion(2);
+
+generateQuestion(1);
 generateKeyboard(0);

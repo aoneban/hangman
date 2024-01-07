@@ -2,7 +2,7 @@ const questions = [
   {
     id: 1,
     question: 'Кто подставил кролика Роджера?',
-    answer: 'Rodzeriowerferg',
+    answer: 'Rodzerio',
   },
   {
     id: 2,

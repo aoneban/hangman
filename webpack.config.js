@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackObfuscator = require('webpack-obfuscator');
+// const WebpackObfuscator = require('webpack-obfuscator');
 const path = require('path');
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
         loader: 'html-loader',
         options: { minimize: false },
       },
-      /*{
+      /* {
         test: /\.js$/,
         exclude: [path.resolve(__dirname, 'excluded_file_name.js')],
         enforce: 'post',
@@ -26,7 +26,7 @@ module.exports = {
             rotateStringArray: true,
           },
         },
-      },*/
+      }, */
       {
         test: /\.s[ac]ss$/i,
         use: [

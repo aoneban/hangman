@@ -2,7 +2,7 @@ import data from './data';
 
 export const generateKeyboard = (n) => {
   const keyboardWrapper = document.querySelector('.block-right__keyboard');
-  if (n > 2) {
+  if (n > data.length - 1) {
     return;
   }
   const keyRows = document.createElement('div');
