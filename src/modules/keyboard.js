@@ -5,8 +5,8 @@ export const generateKeyboard = (n) => {
   if (n > data.length - 1) {
     return;
   }
-  const keyRows = document.createElement('div');
-  keyRows.classList.add(`key-row__${n}`);
+  const keyRows = document.createElement('div')
+  keyRows.classList.add(`key-row__${n}`) 
   data[n].forEach((el) => {
     const key = document.createElement('div');
     key.classList.add('key', `${el.keyCode}`);

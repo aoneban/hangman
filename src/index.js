@@ -16,8 +16,8 @@ const filterToAnswer = (num) => {
 };
 
 const generateAnswer = (num) => {
-  const wrapper = document.querySelector('.wrapper-right')
-  const answer = document.createElement('div')
+  const wrapper = document.querySelector('.wrapper-right');
+  const answer = document.createElement('div');
   answer.classList.add('block-answer');
   const newAnswer = filterToAnswer(num);
   newAnswer.forEach((el, ind) => {
