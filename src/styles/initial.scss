@@ -56,7 +56,7 @@
       display: flex;
       width: 3rem;
       height: 3rem;
-      background-color: rgb(147, 22, 225);
+      background-color: $bgbutton;
       margin: 10px;
       padding: 20px;
       align-items: center;
@@ -65,7 +65,7 @@
       color: beige;
       cursor: pointer;
       &:hover {
-        background-color: rgb(166, 54, 235);
+        background-color: $bghover;
       }
     }
   }
@@ -78,8 +78,7 @@
   gap: 2rem;
   .letter-wrapper {
     padding: 10px;
-    border: 1px solid red;
-    border-radius: 7px;
+    border-bottom: 6px solid rgb(177, 34, 221);
     width: 2rem;
     height: auto;
   }
