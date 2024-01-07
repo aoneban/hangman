@@ -5,13 +5,18 @@ import questions from './modules/questions';
 
 generateGuillotine();
 
-const filterToQuestion = (num) => {
+const getAimItem = (num) => {
   const item = questions.filter((el) => el.id === num);
+  return item;
+};
+
+const filterToQuestion = (num) => {
+  const item = getAimItem(num);
   return item[0].question;
 };
 
 const filterToAnswer = (num) => {
-  const item = questions.filter((el) => el.id === num);
+  const item = getAimItem(num);
   return item[0].answer.toUpperCase().split('');
 };
 

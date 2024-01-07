@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "npx eslint . --fix",
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
     "start": "webpack serve --mode development"
@@ -30,10 +29,5 @@
     "webpack-cli": "^5.1.1",
     "webpack-dev-server": "^4.15.0",
     "webpack-obfuscator": "^3.5.1"
-  },
-    "husky": { 
-      "hooks": { 
-        "pre-commit": "npm run lint" 
-     } 
-  } 
+  }
 }
