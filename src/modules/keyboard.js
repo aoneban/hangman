@@ -3,9 +3,18 @@ import data from './data';
 const changeColorToButton = (elem1, elem2) => {
   const itemOne = elem1;
   itemOne.style.opacity = 1;
-  itemOne.parentNode.style.border = 'none';
+  itemOne.parentNode.classList.add('border-hidden');
   const itemTwo = elem2;
   itemTwo.style.backgroundColor = '#9316E1';
+};
+
+let counter = 0;
+
+const showBodyParts = (res) => {
+  if (res.length === 0) {
+    document.getElementsByClassName('body-player')[counter].style.display = 'block';
+    counter += 1;
+  }
 };
 
 const searchForRequiredLetter = (e) => {
@@ -13,11 +22,14 @@ const searchForRequiredLetter = (e) => {
   const currentElem = e.currentTarget;
   currentElem.style.backgroundColor = '#ea4f4f';
   const nodeList = document.querySelectorAll('.letter-class');
+  const result = [];
   for (let i = 0; i < nodeList.length; i += 1) {
     if (nodeList[i].innerText === currentClick) {
+      result.push(nodeList[i].innerText);
       changeColorToButton(nodeList[i], currentElem);
     } 
   }
+  showBodyParts(result);
 };
 
 export const generateKeyboard = (n) => {

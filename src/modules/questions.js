@@ -1,8 +1,8 @@
 const questions = [
   {
     id: 1,
-    question: 'Кто подставил кролика Роджера?',
-    answer: 'Rodzerio',
+    question: 'Кто лучший футболист мира 1991 года?',
+    answer: 'Matteus',
   },
   {
     id: 2,

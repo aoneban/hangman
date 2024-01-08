@@ -6,7 +6,7 @@
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   height: 100vh;
   overflow: auto;
@@ -22,12 +22,70 @@
       border-left: 10px solid $color;
       border-top: 10px solid $color;
       &__rope {
-        width: 1px;
+        width: 10px;
         height: 70px;
-        border: 5px solid $color;
+        background-color: $color;
         position: absolute;
         right: 0;
         top: 0;
+        .head-man {
+          display: none;
+          position: absolute;
+          width: 5em;
+          height: 5em;
+          border-radius: 100%;
+          border: 10px solid $color;
+          bottom: -4.5rem;
+          right: -2.2rem;
+        }
+        .body-man {
+          display: none;
+          position: absolute;
+          width: 10px;
+          height: 7em;
+          background-color: $color;
+          bottom: -11em;
+        }
+        .left-hang {
+          display: none;
+          position: absolute;
+          width: 10px;
+          height: 4em;
+          background-color: $color;
+          bottom: -8em;
+          transform: rotate(45deg);
+          right: 1.5em;
+        }
+        .right-hang {
+          display: none;
+          position: absolute;
+          width: 10px;
+          height: 4em;
+          background-color: $color;
+          bottom: -8em;
+          transform: rotate(-45deg);
+          left: 1.5em;
+        }
+        .right-leg {
+          display: none;
+          position: absolute;
+          width: 10px;
+          height: 4em;
+          background-color: $color;
+          bottom: -14em;
+          transform: rotate(-45deg);
+          left: 1.5em;
+        }
+        .left-leg {
+          display: none;
+          position: absolute;
+          width: 10px;
+          height: 4em;
+          background-color: $color;
+          bottom: -14em;
+          transform: rotate(45deg);
+          right: 1.5em;
+        }
       }
       &__jumper {
         width: 1px;
@@ -69,6 +127,10 @@
       }
     }
   }
+}
+
+.border-hidden {
+  border: none!important;
 }
 
 .block-answer {
