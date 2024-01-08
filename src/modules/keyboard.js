@@ -1,5 +1,7 @@
 import data from './data';
 
+let ATTEMPT_COUNTER = 0;
+
 const changeColorToButton = (elem1, elem2) => {
   const itemOne = elem1;
   itemOne.style.opacity = 1;
@@ -8,12 +10,10 @@ const changeColorToButton = (elem1, elem2) => {
   itemTwo.style.backgroundColor = '#9316E1';
 };
 
-let counter = 0;
-
-const showBodyParts = (res) => {
-  if (res.length === 0) {
-    document.getElementsByClassName('body-player')[counter].style.display = 'block';
-    counter += 1;
+const showBodyParts = (res, elem) => {
+  if (res.length === 0 && !elem.classList.contains('marker')) {
+    document.getElementsByClassName('body-player')[ATTEMPT_COUNTER].style.display = 'block';
+    ATTEMPT_COUNTER += 1;
   }
 };
 
@@ -22,14 +22,20 @@ const searchForRequiredLetter = (e) => {
   const currentElem = e.currentTarget;
   currentElem.style.backgroundColor = '#ea4f4f';
   const nodeList = document.querySelectorAll('.letter-class');
-  const result = [];
+  const resultTrue = [];
+  const resultFalse = [];
   for (let i = 0; i < nodeList.length; i += 1) {
     if (nodeList[i].innerText === currentClick) {
-      result.push(nodeList[i].innerText);
+      resultTrue.push(nodeList[i].innerText);
       changeColorToButton(nodeList[i], currentElem);
-    } 
+    } else {
+      resultFalse.push(currentClick);
+    }
   }
-  showBodyParts(result);
+  if (resultFalse.includes(currentClick)) {
+    showBodyParts(resultTrue, currentElem);
+    currentElem.classList.add('marker');
+  }
 };
 
 export const generateKeyboard = (n) => {
@@ -50,4 +56,12 @@ export const generateKeyboard = (n) => {
   });
   keyboardWrapper.append(keyRows);
   generateKeyboard(n + 1);
+};
+
+export const physicalKeyboard = () => {
+  document.addEventListener('keydown', (event) => {
+  
+    console.log(event.code);
+  
+  });
 };

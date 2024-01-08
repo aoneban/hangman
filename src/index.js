@@ -1,6 +1,6 @@
 import './index.scss';
 import { generateGuillotine } from './modules/guillotine';
-import { generateKeyboard } from './modules/keyboard';
+import { generateKeyboard, physicalKeyboard } from './modules/keyboard';
 import questions from './modules/questions';
 
 generateGuillotine();
@@ -47,4 +47,7 @@ const generateQuestion = (num) => {
 };
 
 generateQuestion(1);
-generateKeyboard(0);
+
+const START_ROW_KEYBOARD = 0;
+generateKeyboard(START_ROW_KEYBOARD);
+physicalKeyboard();
