@@ -60,8 +60,25 @@ export const generateKeyboard = (n) => {
 
 export const physicalKeyboard = () => {
   document.addEventListener('keydown', (event) => {
-  
-    console.log(event.code);
-  
+    const nodeListTwo = document.querySelectorAll('.letter-class');
+    const key = event.key.toUpperCase();
+    const topKey = event.code;
+    const resultTrueTwo = [];
+    for (let i = 0; i < nodeListTwo.length; i += 1) {
+      if (nodeListTwo[i].innerHTML === key) {
+        resultTrueTwo.push(nodeListTwo[i].innerText);
+        nodeListTwo[i].style.opacity = 1;
+        nodeListTwo[i].parentNode.classList.add('border-hidden');
+      }
+    }
+    if (resultTrueTwo.length === 0) {
+      const keyboard = document.querySelectorAll('.key');
+      for (let i = 0; i < keyboard.length; i += 1) {
+        if (keyboard[i].classList.contains(topKey))
+        keyboard[i].style.backgroundColor = '#ea4f4f';
+      }
+      document.getElementsByClassName('body-player')[ATTEMPT_COUNTER].style.display = 'block';
+      ATTEMPT_COUNTER += 1;
+    }
   });
 };
