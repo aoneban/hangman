@@ -10,10 +10,16 @@ const changeColorToButton = (elem1, elem2) => {
   itemTwo.style.backgroundColor = '#9316E1';
 };
 
+const generateNewCount = () => {
+  const count = document.querySelector('.count');
+  count.innerHTML = ATTEMPT_COUNTER;
+};
+
 const showBodyParts = (res, elem) => {
   if (res.length === 0 && !elem.classList.contains('marker')) {
     document.getElementsByClassName('body-player')[ATTEMPT_COUNTER].style.display = 'block';
     ATTEMPT_COUNTER += 1;
+    generateNewCount();
   }
 };
 
@@ -73,12 +79,17 @@ export const physicalKeyboard = () => {
     }
     if (resultTrueTwo.length === 0) {
       const keyboard = document.querySelectorAll('.key');
-      for (let i = 0; i < keyboard.length; i += 1) {
-        if (keyboard[i].classList.contains(topKey))
-        keyboard[i].style.backgroundColor = '#ea4f4f';
-      }
-      document.getElementsByClassName('body-player')[ATTEMPT_COUNTER].style.display = 'block';
-      ATTEMPT_COUNTER += 1;
+      keyboard.forEach((item) => {
+        if (item.classList.contains(topKey) && !item.classList.contains('marker')) {
+          const newItem = item;
+          newItem.style.backgroundColor = '#ea4f4f';
+          newItem.classList.add('marker');
+          document.getElementsByClassName('body-player')[ATTEMPT_COUNTER].style.display = 'block';
+          ATTEMPT_COUNTER += 1;
+        }
+      });
     }
+    generateNewCount();
   });
 };
+

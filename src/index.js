@@ -1,6 +1,6 @@
 import './index.scss';
 import { generateGuillotine } from './modules/guillotine';
-import { generateKeyboard, physicalKeyboard } from './modules/keyboard';
+import { generateKeyboard, physicalKeyboard, setDynamicVariable } from './modules/keyboard';
 import questions from './modules/questions';
 
 generateGuillotine();
@@ -18,6 +18,14 @@ const filterToQuestion = (num) => {
 const filterToAnswer = (num) => {
   const item = getAimItem(num);
   return item[0].answer.toUpperCase().split('');
+};
+
+const countOfNumberAttempts = () => {
+  const parentElem = document.querySelector('.block-right__question');
+  const counter = document.createElement('div');
+  counter.classList.add('block-right__counter');
+  counter.innerHTML = `Количество попыток: <span class="count">0</span> / 6`;
+  parentElem.insertAdjacentElement('afterend', counter);
 };
 
 const generateAnswer = (num) => {
@@ -44,6 +52,7 @@ const generateQuestion = (num) => {
   question.textContent = filterToQuestion(num);
   wrapper.prepend(question);
   generateAnswer(num);
+  countOfNumberAttempts();
 };
 
 generateQuestion(1);
