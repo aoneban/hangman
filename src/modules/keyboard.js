@@ -1,6 +1,25 @@
 import data from './data';
+import { modalWindow } from './modal';
 
 let ATTEMPT_COUNTER = 0;
+let allItemsHaveClass = true;
+
+const getHiddenWord = () => {
+  const result = [];
+  const hiddenWord = document.querySelectorAll('.letter-class');
+  hiddenWord.forEach((el) => {
+    result.push(el.innerText);
+  });
+    return result.join('');
+};
+
+const listenerCount = (count) => {
+  const totalAttempts = 6;
+  if (count === totalAttempts) {
+    const word = getHiddenWord();
+    modalWindow(false, word);
+  }
+};
 
 const changeColorToButton = (elem1, elem2) => {
   const itemOne = elem1;
@@ -21,6 +40,26 @@ const showBodyParts = (res, elem) => {
     ATTEMPT_COUNTER += 1;
     generateNewCount();
   }
+  listenerCount(ATTEMPT_COUNTER);
+};
+
+const check2 = () => {
+  if (allItemsHaveClass) {
+    const word = getHiddenWord();
+    modalWindow(true, word);
+  }
+};
+
+const check = () => {
+  const items = document.querySelectorAll('.letter-wrapper');
+  items.forEach((item) => {
+    if (!item.classList.contains('border-hidden')) {
+      allItemsHaveClass = false;
+    } else {
+      allItemsHaveClass = true;
+    }
+  });
+  check2();
 };
 
 const searchForRequiredLetter = (e) => {
@@ -41,6 +80,7 @@ const searchForRequiredLetter = (e) => {
   if (resultFalse.includes(currentClick)) {
     showBodyParts(resultTrue, currentElem);
     currentElem.classList.add('marker');
+    check();
   }
 };
 
@@ -89,7 +129,9 @@ export const physicalKeyboard = () => {
         }
       });
     }
+    check();
     generateNewCount();
+    listenerCount(ATTEMPT_COUNTER);
   });
 };
 

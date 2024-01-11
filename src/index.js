@@ -1,6 +1,6 @@
 import './index.scss';
 import { generateGuillotine } from './modules/guillotine';
-import { generateKeyboard, physicalKeyboard, setDynamicVariable } from './modules/keyboard';
+import { generateKeyboard, physicalKeyboard } from './modules/keyboard';
 import questions from './modules/questions';
 
 generateGuillotine();
@@ -15,7 +15,12 @@ const filterToQuestion = (num) => {
   return item[0].question;
 };
 
-const filterToAnswer = (num) => {
+export const getWordLength = (num) => {
+  const item = getAimItem(num);
+  return item[0].answer;
+};
+
+export const filterToAnswer = (num) => {
   const item = getAimItem(num);
   return item[0].answer.toUpperCase().split('');
 };
@@ -24,7 +29,7 @@ const countOfNumberAttempts = () => {
   const parentElem = document.querySelector('.block-right__question');
   const counter = document.createElement('div');
   counter.classList.add('block-right__counter');
-  counter.innerHTML = `Количество попыток: <span class="count">0</span> / 6`;
+  counter.innerHTML = `Number of attempts: <span class="count">0</span> / 6`;
   parentElem.insertAdjacentElement('afterend', counter);
 };
 
@@ -60,3 +65,4 @@ generateQuestion(1);
 const START_ROW_KEYBOARD = 0;
 generateKeyboard(START_ROW_KEYBOARD);
 physicalKeyboard();
+
