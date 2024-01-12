@@ -2,7 +2,6 @@ import data from './data';
 import { modalWindow } from './modal';
 
 let ATTEMPT_COUNTER = 0;
-let allItemsHaveClass = true;
 
 const getHiddenWord = () => {
   const result = [];
@@ -10,7 +9,7 @@ const getHiddenWord = () => {
   hiddenWord.forEach((el) => {
     result.push(el.innerText);
   });
-    return result.join('');
+  return result.join('');
 };
 
 const listenerCount = (count) => {
@@ -44,22 +43,21 @@ const showBodyParts = (res, elem) => {
 };
 
 const check2 = () => {
-  if (allItemsHaveClass) {
-    const word = getHiddenWord();
-    modalWindow(true, word);
-  }
+  const word = getHiddenWord();
+  modalWindow(true, word);
 };
 
 const check = () => {
+  const resultLength = [];
   const items = document.querySelectorAll('.letter-wrapper');
   items.forEach((item) => {
     if (!item.classList.contains('border-hidden')) {
-      allItemsHaveClass = false;
-    } else {
-      allItemsHaveClass = true;
+      resultLength.push(item);
     }
   });
-  check2();
+  if (resultLength.length === 0) {
+    check2();
+  }
 };
 
 const searchForRequiredLetter = (e) => {
@@ -134,4 +132,3 @@ export const physicalKeyboard = () => {
     listenerCount(ATTEMPT_COUNTER);
   });
 };
-
