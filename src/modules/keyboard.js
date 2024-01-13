@@ -1,6 +1,9 @@
 import data from './data';
 // eslint-disable-next-line import/no-cycle
 import { modalWindow } from './modal';
+// eslint-disable-next-line import/no-cycle
+import { generateQuestion } from '../index';
+import { getRandomNumberNoRepeats } from './helper';
 
 let ATTEMPT_COUNTER = 0;
 
@@ -134,6 +137,16 @@ export const physicalKeyboard = () => {
   });
 };
 
+
+
+const replaceQuestion = () => {
+  const randomNum = getRandomNumberNoRepeats();
+  document.querySelector('.block-right__question').remove();
+  document.querySelector('.block-answer').remove();
+  document.querySelector('.block-right__counter').remove();
+  generateQuestion(randomNum);
+};
+
 const restoringKeyboard = () => {
   const keys = document.querySelectorAll('.key');
   keys.forEach((el) => {
@@ -142,6 +155,7 @@ const restoringKeyboard = () => {
       el.removeAttribute('style');
     }
   });
+  replaceQuestion();
 };
 
 const hidingBodyParts = () => {
