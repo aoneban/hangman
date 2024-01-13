@@ -1,5 +1,6 @@
 import './index.scss';
 import { generateGuillotine } from './modules/guillotine';
+// eslint-disable-next-line import/no-cycle
 import { generateKeyboard, physicalKeyboard } from './modules/keyboard';
 import questions from './modules/questions';
 
@@ -60,7 +61,20 @@ const generateQuestion = (num) => {
   countOfNumberAttempts();
 };
 
-generateQuestion(1);
+function getRandomNumberNoRepeats() {
+  if (!getRandomNumberNoRepeats.previousRandomNumber) {
+      getRandomNumberNoRepeats.previousRandomNumber = 0;
+  }
+  let newRandomNumber;
+  do {
+      newRandomNumber = Math.floor(Math.random() * 10) + 1;
+  } while (newRandomNumber === getRandomNumberNoRepeats.previousRandomNumber);
+  getRandomNumberNoRepeats.previousRandomNumber = newRandomNumber;
+  return newRandomNumber;
+}
+
+const randomNum1 = getRandomNumberNoRepeats();
+generateQuestion(randomNum1);
 
 const START_ROW_KEYBOARD = 0;
 generateKeyboard(START_ROW_KEYBOARD);

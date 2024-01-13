@@ -1,4 +1,5 @@
 import data from './data';
+// eslint-disable-next-line import/no-cycle
 import { modalWindow } from './modal';
 
 let ATTEMPT_COUNTER = 0;
@@ -42,12 +43,12 @@ const showBodyParts = (res, elem) => {
   listenerCount(ATTEMPT_COUNTER);
 };
 
-const check2 = () => {
+const launchModalWindow = () => {
   const word = getHiddenWord();
   modalWindow(true, word);
 };
 
-const check = () => {
+const checkBeforeLaunchModalWindow = () => {
   const resultLength = [];
   const items = document.querySelectorAll('.letter-wrapper');
   items.forEach((item) => {
@@ -56,7 +57,7 @@ const check = () => {
     }
   });
   if (resultLength.length === 0) {
-    check2();
+    launchModalWindow();
   }
 };
 
@@ -78,7 +79,7 @@ const searchForRequiredLetter = (e) => {
   if (resultFalse.includes(currentClick)) {
     showBodyParts(resultTrue, currentElem);
     currentElem.classList.add('marker');
-    check();
+    checkBeforeLaunchModalWindow();
   }
 };
 
@@ -127,8 +128,32 @@ export const physicalKeyboard = () => {
         }
       });
     }
-    check();
+    checkBeforeLaunchModalWindow();
     generateNewCount();
     listenerCount(ATTEMPT_COUNTER);
   });
+};
+
+const restoringKeyboard = () => {
+  const keys = document.querySelectorAll('.key');
+  keys.forEach((el) => {
+    if (el.classList.contains('marker')) {
+      el.classList.remove('marker');
+      el.removeAttribute('style');
+    }
+  });
+};
+
+const hidingBodyParts = () => {
+  const man = document.getElementsByClassName('body-player');
+  for(let i = 0; i < man.length; i += 1) {
+    man[i].style.display = 'none';
+  }
+  restoringKeyboard();
+};
+
+export const launchNewGame = () => {
+  ATTEMPT_COUNTER = 0;
+  document.getElementById('myModal').remove();
+  hidingBodyParts();
 };

@@ -1,19 +1,8 @@
 import '../styles/modal.scss';
+// eslint-disable-next-line import/no-cycle
+import { launchNewGame } from './keyboard';
 
-const deleteModalWindow = () => {
-  document.getElementById('myModal').remove();
 
-  const overlay = document.createElement('div');
-  overlay.style.position = 'fixed';
-  overlay.style.top = '0';
-  overlay.style.left = '0';
-  overlay.style.width = '100%';
-  overlay.style.height = '100%';
-  overlay.style.zIndex = '9999';
-  overlay.style.pointerEvents = 'all';
-
-  document.body.appendChild(overlay);
-};
 
 export const modalWindow = (bool, word) => {
   const myModal = document.createElement('div');
@@ -37,13 +26,10 @@ export const modalWindow = (bool, word) => {
   const wrapperButtons = document.createElement('div');
   wrapperButtons.classList.add('wrapper-buttons');
   const buttonOne = document.createElement('button');
+  buttonOne.addEventListener('click', launchNewGame);
   buttonOne.classList.add('btn');
-  buttonOne.textContent = 'Yes';
-  const buttonTwo = document.createElement('button');
-  buttonTwo.addEventListener('click', deleteModalWindow);
-  buttonTwo.classList.add('btn');
-  buttonTwo.textContent = 'No';
+  buttonOne.textContent = 'Play again';
 
-  wrapperButtons.append(buttonOne, buttonTwo);
+  wrapperButtons.append(buttonOne);
   content.append(textToModal, hiddenWord, contain, wrapperButtons);
 };
