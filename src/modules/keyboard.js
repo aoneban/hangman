@@ -137,8 +137,6 @@ export const physicalKeyboard = () => {
   });
 };
 
-
-
 const replaceQuestion = () => {
   const randomNum = getRandomNumberNoRepeats();
   document.querySelector('.block-right__question').remove();

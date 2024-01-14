@@ -62,11 +62,29 @@ export const generateQuestion = (num) => {
   countOfNumberAttempts();
 };
 
-export const randomNum1 = getRandomNumberNoRepeats();
+const getRandomNumber = () => Math.floor(Math.random() * 11) + 1;
 
-generateQuestion(randomNum1);
+const getRandomNumberNoRepeats2 = () => {
+  let previousRandomNumber = parseInt(localStorage.getItem('previousRandomNumber'), 11);
+  // eslint-disable-next-line no-restricted-globals
+  if (isNaN(previousRandomNumber)) {
+    previousRandomNumber = 0;
+  }
+  let newRandomNumber;
+  do {
+    newRandomNumber = getRandomNumber();
+  } while (newRandomNumber === previousRandomNumber);
+  localStorage.setItem('previousRandomNumber', newRandomNumber.toString());
+  return newRandomNumber;
+};
+
+const startOnPageLoad = () => {
+  const randomNum = getRandomNumberNoRepeats2();
+  generateQuestion(randomNum);
+};
+
+startOnPageLoad();
 
 const START_ROW_KEYBOARD = 0;
 generateKeyboard(START_ROW_KEYBOARD);
 physicalKeyboard();
-
