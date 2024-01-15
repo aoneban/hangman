@@ -2,7 +2,7 @@ import './index.scss';
 import { generateGuillotine } from './modules/guillotine';
 // eslint-disable-next-line import/no-cycle
 import { generateKeyboard, physicalKeyboard } from './modules/keyboard';
-import { getRandomNumberNoRepeats } from './modules/helper';
+import { getRandomNumberNoRepeatsTwo } from './modules/helper';
 import questions from './modules/questions';
 
 generateGuillotine();
@@ -24,6 +24,7 @@ export const getWordLength = (num) => {
 
 export const filterToAnswer = (num) => {
   const item = getAimItem(num);
+  console.log(item[0].answer.toUpperCase());
   return item[0].answer.toUpperCase().split('');
 };
 
@@ -62,24 +63,8 @@ export const generateQuestion = (num) => {
   countOfNumberAttempts();
 };
 
-const getRandomNumber = () => Math.floor(Math.random() * 11) + 1;
-
-const getRandomNumberNoRepeats2 = () => {
-  let previousRandomNumber = parseInt(localStorage.getItem('previousRandomNumber'), 11);
-  // eslint-disable-next-line no-restricted-globals
-  if (isNaN(previousRandomNumber)) {
-    previousRandomNumber = 0;
-  }
-  let newRandomNumber;
-  do {
-    newRandomNumber = getRandomNumber();
-  } while (newRandomNumber === previousRandomNumber);
-  localStorage.setItem('previousRandomNumber', newRandomNumber.toString());
-  return newRandomNumber;
-};
-
 const startOnPageLoad = () => {
-  const randomNum = getRandomNumberNoRepeats2();
+  const randomNum = getRandomNumberNoRepeatsTwo();
   generateQuestion(randomNum);
 };
 

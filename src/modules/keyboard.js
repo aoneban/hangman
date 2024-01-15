@@ -126,6 +126,7 @@ export const physicalKeyboard = () => {
           const newItem = item;
           newItem.style.backgroundColor = '#ea4f4f';
           newItem.classList.add('marker');
+          document.querySelector('.head-man').classList.add('active');
           document.getElementsByClassName('body-player')[ATTEMPT_COUNTER].style.display = 'block';
           ATTEMPT_COUNTER += 1;
         }

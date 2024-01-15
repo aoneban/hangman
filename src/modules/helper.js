@@ -9,3 +9,19 @@ export const getRandomNumberNoRepeats = () => {
     getRandomNumberNoRepeats.previousRandomNumber = newRandomNumber;
     return newRandomNumber;
   };
+
+const getRandomNumber = () => Math.floor(Math.random() * 11) + 1;
+
+export const getRandomNumberNoRepeatsTwo = () => {
+  let previousRandomNumber = parseInt(localStorage.getItem('previousRandomNumber'), 11);
+  // eslint-disable-next-line no-restricted-globals
+  if (isNaN(previousRandomNumber)) {
+    previousRandomNumber = 0;
+  }
+  let newRandomNumber;
+  do {
+    newRandomNumber = getRandomNumber();
+  } while (newRandomNumber === previousRandomNumber);
+  localStorage.setItem('previousRandomNumber', newRandomNumber.toString());
+  return newRandomNumber;
+};
