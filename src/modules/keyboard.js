@@ -20,6 +20,8 @@ const listenerCount = (count) => {
   const totalAttempts = 6;
   if (count === totalAttempts) {
     const word = getHiddenWord();
+    // eslint-disable-next-line no-use-before-define
+    document.removeEventListener('keydown', keyboardHandler);
     modalWindow(false, word);
   }
 };
@@ -60,6 +62,8 @@ const checkBeforeLaunchModalWindow = () => {
     }
   });
   if (resultLength.length === 0) {
+    // eslint-disable-next-line no-use-before-define
+    document.removeEventListener('keydown', keyboardHandler);
     launchModalWindow();
   }
 };
@@ -106,36 +110,38 @@ export const generateKeyboard = (n) => {
   generateKeyboard(n + 1);
 };
 
-export const physicalKeyboard = () => {
-  document.addEventListener('keydown', (event) => {
-    const nodeListTwo = document.querySelectorAll('.letter-class');
-    const key = event.key.toUpperCase();
-    const topKey = event.code;
-    const resultTrueTwo = [];
-    for (let i = 0; i < nodeListTwo.length; i += 1) {
-      if (nodeListTwo[i].innerHTML === key) {
-        resultTrueTwo.push(nodeListTwo[i].innerText);
-        nodeListTwo[i].style.opacity = 1;
-        nodeListTwo[i].parentNode.classList.add('border-hidden');
+function keyboardHandler(event) {
+  const nodeListTwo = document.querySelectorAll('.letter-class');
+  const key = event.key.toUpperCase();
+  const topKey = event.code;
+  const resultTrueTwo = [];
+  for (let i = 0; i < nodeListTwo.length; i += 1) {
+    if (nodeListTwo[i].innerHTML === key) {
+      resultTrueTwo.push(nodeListTwo[i].innerText);
+      nodeListTwo[i].style.opacity = 1;
+      nodeListTwo[i].parentNode.classList.add('border-hidden');
+    }
+  }
+  if (resultTrueTwo.length === 0) {
+    const keyboard = document.querySelectorAll('.key');
+    keyboard.forEach((item) => {
+      if (item.classList.contains(topKey) && !item.classList.contains('marker')) {
+        const newItem = item;
+        newItem.style.backgroundColor = '#ea4f4f';
+        newItem.classList.add('marker');
+        document.querySelector('.head-man').classList.add('active');
+        document.getElementsByClassName('body-player')[ATTEMPT_COUNTER].style.display = 'block';
+        ATTEMPT_COUNTER += 1;
       }
-    }
-    if (resultTrueTwo.length === 0) {
-      const keyboard = document.querySelectorAll('.key');
-      keyboard.forEach((item) => {
-        if (item.classList.contains(topKey) && !item.classList.contains('marker')) {
-          const newItem = item;
-          newItem.style.backgroundColor = '#ea4f4f';
-          newItem.classList.add('marker');
-          document.querySelector('.head-man').classList.add('active');
-          document.getElementsByClassName('body-player')[ATTEMPT_COUNTER].style.display = 'block';
-          ATTEMPT_COUNTER += 1;
-        }
-      });
-    }
-    checkBeforeLaunchModalWindow();
-    generateNewCount();
-    listenerCount(ATTEMPT_COUNTER);
-  });
+    });
+  }
+  checkBeforeLaunchModalWindow();
+  generateNewCount();
+  listenerCount(ATTEMPT_COUNTER);
+}
+
+export const physicalKeyboard = () => {
+  document.addEventListener('keydown', keyboardHandler);
 };
 
 const replaceQuestion = () => {
@@ -159,9 +165,10 @@ const restoringKeyboard = () => {
 
 const hidingBodyParts = () => {
   const man = document.getElementsByClassName('body-player');
-  for(let i = 0; i < man.length; i += 1) {
+  for (let i = 0; i < man.length; i += 1) {
     man[i].style.display = 'none';
   }
+  document.addEventListener('keydown', keyboardHandler);
   restoringKeyboard();
 };
 
