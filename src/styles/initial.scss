@@ -11,7 +11,7 @@
   height: 100vh;
   overflow: auto;
   .wrapper-right {
-    width: 50%;
+    width: 53%;
     .block-answer {
       display: flex;
       flex-direction: row;
@@ -20,7 +20,7 @@
       margin-bottom: 6rem;
       .letter-wrapper {
         padding: 10px;
-        border-bottom: 4px solid rgb(177, 34, 221);
+        border-bottom: 4px solid $bgbutton;
         width: 2rem;
         height: auto;
       }
@@ -47,7 +47,7 @@
       text-align: center;
       position: relative;
       font-size: 4rem;
-      bottom: 2rem;
+      bottom: 1rem;
     }
     .block-left {
       position: relative;
@@ -157,7 +157,7 @@
       border-radius: 8px;
       color: beige;
       cursor: pointer;
-      box-shadow: 3px 3px 4px blue;
+      box-shadow: 3px 3px 4px $shadow;
       &:hover {
         background-color: $bghover;
       }
@@ -169,4 +169,62 @@
   border: none!important;
 }
 
+@media screen and (max-width: 1020px) {
 
+  .container {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 960px) {
+
+  .container {
+    height: auto;
+    .wrapper-right {
+      margin: 2rem 0 3rem 0;
+    }
+    .wrapper-left {
+      margin-top: 2rem;
+    }
+  }
+
+}
+
+@media screen and (max-width: 530px) {
+
+  .container {
+    height: auto;
+    .wrapper-right {
+      margin: 2rem 0 3rem 0;
+      width: 60%;
+    }
+    .wrapper-left {
+      margin-top: 2rem;
+      width: 20rem;
+      .block-left {
+        width: 236px;
+        height: 25rem;
+      }
+    }
+  }
+  .block-right__keyboard .key-row__0 .key, 
+  .block-right__keyboard .key-row__1 .key, 
+  .block-right__keyboard .key-row__2 .key {
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(147, 22, 225);
+    margin: 2px;
+    padding: 17px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: beige;
+    cursor: pointer;
+    box-shadow: 2px 2px 3px rgb(0, 0, 255);
+  }
+  .container .wrapper-right .block-answer .letter-wrapper {
+    width: 1rem;
+  }
+
+}
