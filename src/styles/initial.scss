@@ -8,10 +8,15 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  height: 100vh;
+  height: auto;
+  width: 80%;
+  margin: 0 auto;
   overflow: auto;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.6);
   .wrapper-right {
     width: 53%;
+    padding: 80px 0;
     .block-answer {
       display: flex;
       flex-direction: row;
@@ -48,6 +53,10 @@
       position: relative;
       font-size: 4rem;
       bottom: 1rem;
+      font-family: 'Creepster', system-ui;
+      color: $color;
+      font-weight: 400;
+      font-style: normal;
     }
     .block-left {
       position: relative;
@@ -166,18 +175,16 @@
 }
 
 .border-hidden {
-  border: none!important;
+  border: none !important;
 }
 
 @media screen and (max-width: 1020px) {
-
   .container {
     flex-wrap: wrap;
   }
 }
 
 @media screen and (max-width: 960px) {
-
   .container {
     height: auto;
     .wrapper-right {
@@ -187,11 +194,9 @@
       margin-top: 2rem;
     }
   }
-
 }
 
 @media screen and (max-width: 530px) {
-
   .container {
     height: auto;
     .wrapper-right {
@@ -207,8 +212,8 @@
       }
     }
   }
-  .block-right__keyboard .key-row__0 .key, 
-  .block-right__keyboard .key-row__1 .key, 
+  .block-right__keyboard .key-row__0 .key,
+  .block-right__keyboard .key-row__1 .key,
   .block-right__keyboard .key-row__2 .key {
     display: flex;
     width: 2rem;
@@ -226,5 +231,4 @@
   .container .wrapper-right .block-answer .letter-wrapper {
     width: 1rem;
   }
-
 }
