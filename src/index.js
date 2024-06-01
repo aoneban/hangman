@@ -24,7 +24,6 @@ export const getWordLength = (num) => {
 
 export const filterToAnswer = (num) => {
   const item = getAimItem(num);
-  console.log(item[0].answer.toUpperCase());
   return item[0].answer.toUpperCase().split('');
 };
 
