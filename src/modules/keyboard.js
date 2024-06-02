@@ -22,7 +22,16 @@ const listenerCount = (count) => {
     const word = getHiddenWord();
     // eslint-disable-next-line no-use-before-define
     document.removeEventListener('keydown', keyboardHandler);
-    modalWindow(false, word);
+    const head = document.querySelectorAll('.body-player');
+    head.forEach((el) => {
+      if(el.classList.contains('head-man')) { 
+        el.classList.add('head-man2');
+        el.classList.remove('head-man');
+      }
+    });
+    setTimeout(() => {
+      modalWindow(false, word);
+    }, 3000);
   }
 };
 
@@ -175,5 +184,12 @@ const hidingBodyParts = () => {
 export const launchNewGame = () => {
   ATTEMPT_COUNTER = 0;
   document.getElementById('myModal').remove();
+  const head = document.querySelectorAll('.body-player');
+    head.forEach((el) => {
+      if(el.classList.contains('head-man2')) { 
+        el.classList.add('head-man');
+        el.classList.remove('head-man2');
+      }
+    });
   hidingBodyParts();
 };
