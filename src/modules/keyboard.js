@@ -16,19 +16,23 @@ const getHiddenWord = () => {
   return result.join('');
 };
 
+const changeHead = (head1, head2) => {
+  const head = document.querySelectorAll('.body-player');
+  head.forEach((el) => {
+    if (el.classList.contains(head1)) {
+      el.classList.add(head2);
+      el.classList.remove(head1);
+    }
+  });
+};
+
 const listenerCount = (count) => {
   const totalAttempts = 6;
   if (count === totalAttempts) {
     const word = getHiddenWord();
     // eslint-disable-next-line no-use-before-define
     document.removeEventListener('keydown', keyboardHandler);
-    const head = document.querySelectorAll('.body-player');
-    head.forEach((el) => {
-      if(el.classList.contains('head-man')) { 
-        el.classList.add('head-man2');
-        el.classList.remove('head-man');
-      }
-    });
+    changeHead('head-man', 'head-man2');
     setTimeout(() => {
       modalWindow(false, word);
     }, 3000);
@@ -184,12 +188,8 @@ const hidingBodyParts = () => {
 export const launchNewGame = () => {
   ATTEMPT_COUNTER = 0;
   document.getElementById('myModal').remove();
-  const head = document.querySelectorAll('.body-player');
-    head.forEach((el) => {
-      if(el.classList.contains('head-man2')) { 
-        el.classList.add('head-man');
-        el.classList.remove('head-man2');
-      }
-    });
+  changeHead('head-man2', 'head-man');
   hidingBodyParts();
 };
+
+
