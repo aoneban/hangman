@@ -13,6 +13,10 @@ export const generateGuillotine = () => {
   nameGame.classList.add('name-game');
   nameGame.textContent = 'Hangman';
 
+  const developer = document.createElement('h3');
+  developer.classList.add('developer');
+  developer.textContent = 'Developed by Ashot Bahiran';
+
 
   const blockLeft = document.createElement('div');
   blockLeft.classList.add('block-left');
@@ -47,7 +51,7 @@ export const generateGuillotine = () => {
   rope.append(headMan, bodyMan, leftHang, rightHang, leftLeg, rightLeg);
   blockLeft.append(rope, jumper);
   wrapperLeft.append(nameGame, blockLeft);
-  wrapperRight.append(keyboard);
+  wrapperRight.append(keyboard, developer);
   container.append(wrapperLeft, wrapperRight);
   wrapper.append(container);
 };
