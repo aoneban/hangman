@@ -5,6 +5,7 @@ import { modalWindow } from './modal';
 import { generateQuestion } from '../index';
 import { getRandomNumberNoRepeats } from './helper';
 
+
 let ATTEMPT_COUNTER = 0;
 
 const getHiddenWord = () => {
@@ -35,7 +36,7 @@ const listenerCount = (count) => {
     changeHead('head-man', 'head-man2');
     setTimeout(() => {
       modalWindow(false, word);
-    }, 3000);
+    }, 1000);
   }
 };
 
